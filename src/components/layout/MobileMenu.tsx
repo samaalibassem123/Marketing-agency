@@ -7,6 +7,7 @@ import { ArrowUpRight, X, Mail, Phone, MapPin } from "lucide-react";
 import { AGENCY_INFO } from "@/data/agency";
 import { Button } from "@/components/ui/button";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -19,6 +20,8 @@ export default function MobileMenu({
   onClose,
   links,
 }: MobileMenuProps) {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -56,7 +59,7 @@ export default function MobileMenu({
           {/* Navigation Links */}
           <div className="py-8 flex flex-col gap-4">
             <span className="text-[10px] uppercase tracking-wider text-[#777777]">
-              Navigation
+              {t.footer.navTitle}
             </span>
             {links.map((link, idx) => (
               <motion.div
@@ -86,7 +89,7 @@ export default function MobileMenu({
             <div className="grid grid-cols-1 gap-2 text-xs text-[#777777]">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-white" />
-                <span>Les Berges du Lac II, Tunis</span>
+                <span>{AGENCY_INFO.location.address}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-white" />
@@ -103,10 +106,10 @@ export default function MobileMenu({
             </div>
 
             <div className="pt-2">
-              <Link href="/#contact" onClick={onClose} className="w-full block">
+              <Link href="/contact" onClick={onClose} className="w-full block">
                 <Button size="sm" className="w-full justify-between">
-                  <span>Start Project</span>
-                  <ArrowUpRight className="w-4 h-4 ml-1" />
+                  <span>{t.hero.startProject}</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1 rtl:rotate-180" />
                 </Button>
               </Link>
             </div>

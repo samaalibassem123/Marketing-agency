@@ -33,6 +33,7 @@ export interface Translations {
       {
         title: string;
         shortDescription: string;
+        fullDescription?: string;
         metricsHighlight: string;
         techTag: string;
         deliverables: string[];
@@ -115,6 +116,42 @@ export interface Translations {
     rights: string;
     backToTop: string;
   };
+  aboutPage: {
+    badge: string;
+    headlinePart1: string;
+    headlineUnderline: string;
+    leadText: string;
+    subText: string;
+    disciplinesTitle: string;
+    disciplines: { role: string; desc: string }[];
+    ctaTitle: string;
+    ctaSub: string;
+    ctaButton: string;
+  };
+  servicesPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    inquireFor: string;
+  };
+  contactPage: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    servicesLabel: string;
+    budgetLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    messagePlaceholder: string;
+    buttonSubmit: string;
+    buttonSending: string;
+    messageSentTitle: string;
+    messageSentDesc: string;
+    sendAnother: string;
+    coordinatesTitle: string;
+    studioTitle: string;
+    hours: string;
+  };
 }
 
 export const TRANSLATIONS: Record<Language, Translations> = {
@@ -153,35 +190,44 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "Web Development",
           shortDescription:
             "Ultra-fast websites and web applications built with Next.js.",
+          fullDescription:
+            "We build bespoke digital platforms with sub-second speeds, smooth interactions, and rock-solid architecture.",
           metricsHighlight: "99+ Performance",
           techTag: "Next.js 16 • React 19 • WebGL",
           deliverables: [
             "Custom Next.js & React",
             "Corporate & Portfolio Sites",
             "Headless E-Commerce",
+            "Web Apps & Portals",
           ],
         },
         "branding-graphic-design": {
           title: "Branding & Identity",
           shortDescription:
             "Distinct visual identities that give brands an unmistakable voice.",
+          fullDescription:
+            "From bespoke typography and logos to comprehensive design systems, we craft brands people remember.",
           metricsHighlight: "Bespoke Design Systems",
           techTag: "Visual Systems • Bespoke Type",
           deliverables: [
             "Logomark & Typography",
             "Visual Design System",
             "Brand Guidelines",
+            "Digital & Print Assets",
           ],
         },
         "social-media-management": {
           title: "Social Media",
           shortDescription:
             "Editorial-grade content and active community growth.",
+          fullDescription:
+            "We turn casual scrollers into loyal customers with viral short-form video and high-retention storytelling.",
           metricsHighlight: "High-Retention Reach",
           techTag: "Short-Form Video • TikTok & IG",
           deliverables: [
             "Content Strategy & Calendars",
             "Reels & Short-Form Video",
+            "Instagram & TikTok",
             "Community Moderation",
           ],
         },
@@ -189,11 +235,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "Digital Marketing",
           shortDescription:
             "Targeted paid ads and SEO funnels that drive real revenue.",
+          fullDescription:
+            "We design data-driven acquisition campaigns across Meta and Google, tracking every cent to actual revenue.",
           metricsHighlight: "Targeted ROAS",
           techTag: "Meta & Google Ads • Technical SEO",
           deliverables: [
             "Meta Ads (IG & FB)",
             "Google Search & P-Max",
+            "Technical & On-Page SEO",
             "Attribution Analytics",
           ],
         },
@@ -201,23 +250,29 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "AI & Automation",
           shortDescription:
             "Intelligent AI agents and workflow automations that save hours.",
+          fullDescription:
+            "We connect your tools and deploy autonomous AI helpers to handle repetitive tasks and customer queries 24/7.",
           metricsHighlight: "Autonomous Workflows",
           techTag: "Autonomous AI • Workflow Engine",
           deliverables: [
             "AI Customer Assistants",
             "Automated Workflows (n8n)",
             "CRM & Data Sync",
+            "Custom AI Integrations",
           ],
         },
         "photo-video-production": {
           title: "Photo & Video",
           shortDescription:
             "Cinema-grade photography and films that give products luxury status.",
+          fullDescription:
+            "From studio lighting to on-location cinema cameras, our production team crafts visuals that elevate your brand.",
           metricsHighlight: "Cinema 4K/6K Video",
           techTag: "Cinema 4K/6K • Commercial Art",
           deliverables: [
             "Studio Product Photos",
             "Commercial Brand Films",
+            "Executive Interviews",
             "Drone Cinematography",
           ],
         },
@@ -409,6 +464,64 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       rights: "All rights reserved.",
       backToTop: "BACK TO TOP",
     },
+    aboutPage: {
+      badge: "THE STUDIO",
+      headlinePart1: "Crafted in Tunis.",
+      headlineUnderline: "Built for the world.",
+      leadText:
+        "We are a boutique studio combining art direction with software engineering. We build digital flagships that help brands stand out and grow.",
+      subText:
+        "From our studio in Tunis, we collaborate seamlessly with clients across North Africa, Europe, the GCC, and North America.",
+      disciplinesTitle: "Disciplines",
+      disciplines: [
+        {
+          role: "Creative Direction",
+          desc: "Brand identity, typography, and visual systems.",
+        },
+        {
+          role: "Software Architecture",
+          desc: "Next.js, Three.js, and serverless engineering.",
+        },
+        {
+          role: "Growth Strategy",
+          desc: "Paid media funnels and conversion rate optimization.",
+        },
+        {
+          role: "AI & Automation",
+          desc: "Autonomous workflow pipelines and custom LLM tools.",
+        },
+      ],
+      ctaTitle: "Have a project in mind?",
+      ctaSub: "We take on a limited number of clients each quarter.",
+      ctaButton: "Start a Project",
+    },
+    servicesPage: {
+      badge: "CAPABILITIES",
+      title: "Services.",
+      subtitle:
+        "Everything ambitious brands need to launch, scale, and automate.",
+      inquireFor: "Inquire for",
+    },
+    contactPage: {
+      badge: "START A CONVERSATION",
+      title: "Contact.",
+      subtitle:
+        "Tell us about your objectives. We will review your brief within 24 hours.",
+      servicesLabel: "Services",
+      budgetLabel: "Estimated Budget",
+      namePlaceholder: "Your Name *",
+      emailPlaceholder: "Email Address *",
+      messagePlaceholder: "Tell us about the project...",
+      buttonSubmit: "Submit Project Brief",
+      buttonSending: "Sending...",
+      messageSentTitle: "Message Sent.",
+      messageSentDesc:
+        "A partner will review your project and reply within 24 hours.",
+      sendAnother: "Send another message",
+      coordinatesTitle: "COORDINATES",
+      studioTitle: "Tunis Studio",
+      hours: "Mon — Fri: 09:00 — 18:30 (GMT+1)",
+    },
   },
   fr: {
     nav: {
@@ -445,35 +558,44 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "Développement Web",
           shortDescription:
             "Sites web et applications ultra-rapides conçus avec Next.js.",
+          fullDescription:
+            "Nous concevons des plateformes digitales sur mesure avec des temps de chargement ultra-rapides, des interactions fluides et une architecture pérenne.",
           metricsHighlight: "Performance 99+",
           techTag: "Next.js 16 • React 19 • WebGL",
           deliverables: [
             "Next.js & React sur-mesure",
             "Sites corporate & vitrines",
             "E-Commerce Headless",
+            "Applications Web & Portails",
           ],
         },
         "branding-graphic-design": {
           title: "Branding & Identité",
           shortDescription:
             "Identités visuelles marquantes qui confèrent une présence unique.",
+          fullDescription:
+            "De la typographie singulière aux logos distinctifs et systèmes graphiques complets, nous bâtissons des identités fortes et mémorables.",
           metricsHighlight: "Design Systems Sur Mesure",
           techTag: "Systèmes Visuels • Typographie",
           deliverables: [
             "Logotype & Typographie",
             "Design System Global",
-            "Charte Graphique",
+            "Charte Graphique Complète",
+            "Supports Digitaux & Print",
           ],
         },
         "social-media-management": {
           title: "Réseaux Sociaux",
           shortDescription:
             "Contenu éditorial premium et engagement communautaire ciblé.",
+          fullDescription:
+            "Nous transformons votre audience en clients fidèles grâce à des vidéos courtes virales et une narration visuelle à fort taux de rétention.",
           metricsHighlight: "Forte Rétention",
           techTag: "Vidéos Courtes • TikTok & IG",
           deliverables: [
             "Stratégie & Calendrier",
             "Reels & Formats Courts",
+            "Instagram & TikTok",
             "Modération Communautaire",
           ],
         },
@@ -481,11 +603,14 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "Marketing Digital",
           shortDescription:
             "Campagnes payantes et tunnels SEO axés sur la rentabilité.",
+          fullDescription:
+            "Nous déployons des campagnes d'acquisition basées sur la data via Meta et Google, mesurant chaque investissement jusqu'au chiffre d'affaires réel.",
           metricsHighlight: "ROAS Optimisé",
           techTag: "Meta & Google Ads • SEO Technique",
           deliverables: [
             "Publicités Meta (IG & FB)",
             "Google Ads & Search",
+            "SEO Technique & Sémantique",
             "Analytique & Attribution",
           ],
         },
@@ -493,23 +618,29 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "IA & Automatisation",
           shortDescription:
             "Agents d'IA intelligents et workflows qui libèrent vos équipes.",
+          fullDescription:
+            "Nous interconnectons vos outils métier et déployons des agents IA autonomes pour traiter les requêtes clients et automatiser vos tâches 24h/24.",
           metricsHighlight: "Workflows Autonomes",
           techTag: "IA Autonome • Moteur de Flux",
           deliverables: [
             "Assistants Clients IA",
             "Automatisations (n8n)",
             "Synchronisation CRM & Données",
+            "Intégrations IA Personnalisées",
           ],
         },
         "photo-video-production": {
           title: "Photo & Vidéo",
           shortDescription:
             "Productions audiovisuelles cinématographiques valorisant votre marque.",
+          fullDescription:
+            "De l'éclairage de studio aux caméras cinéma sur site, notre équipe de production réalise des visuels d'exception qui subliment vos produits.",
           metricsHighlight: "Vidéo Cinéma 4K/6K",
           techTag: "Caméras Cinéma • Studio & Drone",
           deliverables: [
             "Photos Produits Studio",
             "Films de Marque",
+            "Interviews de Dirigeants",
             "Prises de Vue par Drone",
           ],
         },
@@ -701,6 +832,64 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       rights: "Tous droits réservés.",
       backToTop: "RETOUR EN HAUT",
     },
+    aboutPage: {
+      badge: "LE STUDIO",
+      headlinePart1: "Conçu à Tunis.",
+      headlineUnderline: "Déployé pour le monde.",
+      leadText:
+        "Nous sommes un studio d'élite alliant direction artistique exigeante et ingénierie logicielle de pointe. Nous concevons des plateformes numériques emblématiques qui distinguent votre marque et accélèrent votre croissance.",
+      subText:
+        "Depuis notre studio à Tunis (Les Berges du Lac II), nous accompagnons avec fluidité des clients en Afrique du Nord, en Europe, dans le Golfe et en Amérique du Nord.",
+      disciplinesTitle: "Nos Disciplines",
+      disciplines: [
+        {
+          role: "Direction Artistique",
+          desc: "Identité de marque, typographie sur-mesure et systèmes visuels.",
+        },
+        {
+          role: "Architecture Logicielle",
+          desc: "Next.js, Three.js et ingénierie cloud sans serveur.",
+        },
+        {
+          role: "Stratégie de Croissance",
+          desc: "Tunnels d'acquisition payante et optimisation de la conversion.",
+        },
+        {
+          role: "IA & Automatisation",
+          desc: "Pipelines de travail autonomes et intégration de modèles LLM.",
+        },
+      ],
+      ctaTitle: "Vous avez un projet en tête ?",
+      ctaSub: "Nous sélectionnons un nombre restreint de partenaires par trimestre.",
+      ctaButton: "Démarrer un Projet",
+    },
+    servicesPage: {
+      badge: "EXPERTISES",
+      title: "Nos Services.",
+      subtitle:
+        "Tout ce dont les marques ambitieuses ont besoin pour lancer, développer et automatiser leurs opérations.",
+      inquireFor: "Demander un accompagnement en",
+    },
+    contactPage: {
+      badge: "DÉMARRER UNE CONVERSATION",
+      title: "Contact.",
+      subtitle:
+        "Présentez-nous vos objectifs. Un associé étudiera votre brief et vous répondra sous 24 heures.",
+      servicesLabel: "Services souhaités",
+      budgetLabel: "Budget Estimé",
+      namePlaceholder: "Votre Nom *",
+      emailPlaceholder: "Adresse Email *",
+      messagePlaceholder: "Parlez-nous brièvement de votre projet...",
+      buttonSubmit: "Envoyer le Brief",
+      buttonSending: "Envoi en cours...",
+      messageSentTitle: "Message Envoyé.",
+      messageSentDesc:
+        "Un associé étudiera votre projet et vous contactera dans les 24 heures.",
+      sendAnother: "Envoyer un autre message",
+      coordinatesTitle: "COORDONNÉES",
+      studioTitle: "Studio Tunis",
+      hours: "Lun — Ven : 09:00 — 18:30 (GMT+1)",
+    },
   },
   tn: {
     nav: {
@@ -737,72 +926,90 @@ export const TRANSLATIONS: Record<Language, Translations> = {
           title: "تطوير المواقع والتطبيقات",
           shortDescription:
             "مواقع وتطبيقات ويب سريعة برشا ومخدومة بـ Next.js.",
+          fullDescription:
+            "نطورو منصات وتطبيقات ويب سريعة برشا بمقاييس عالمية، تفاعل سلس وهندسة برمجية قوية بـ Next.js.",
           metricsHighlight: "سرعة استثنائية +99",
           techTag: "Next.js 16 • React 19 • WebGL",
           deliverables: [
-            "مواقع مخصصة بـ Next.js",
-            "مواقع شركات ومتاجر إلكترونية",
-            "تطبيقات ويب متطورة",
+            "مواقع وتطبيقات Next.js & React",
+            "مواقع شركات وبورتفوليو احترافي",
+            "متاجر إلكترونية سريعة",
+            "بوابات رقمية ولوحات تحكم",
           ],
         },
         "branding-graphic-design": {
           title: "الهوية البصرية والديزاين",
           shortDescription:
             "هوية فريدة وتصاميم تخلي اسمك يعلّق في بال الناس.",
+          fullDescription:
+            "من التايبوغرافي والشعار المتقن حتى لنظام الهوية البصرية الكامل، نصنعو لعلامتك طابع يترسخ في البال.",
           metricsHighlight: "تصميم احترافي من الصفر",
           techTag: "هوية بصرية • تايبوغرافي مخصص",
           deliverables: [
-            "شعار وهوية بصرية كاملة",
-            "دليل استخدام الهوية (Brand Guidelines)",
-            "تصاميم للسوشيال ميديا والإعلانات",
+            "شعار وتايبوغرافي مخصصة",
+            "نظام تصميم بصري شامل",
+            "دليل الهوية البصرية (Brand Guidelines)",
+            "تصاميم رقمية ومطبوعات",
           ],
         },
         "social-media-management": {
           title: "إدارة السوشيال ميديا",
           shortDescription:
             "محتوى احترافي وفيديوهات قصيرة تجيبلك تفاعل ومتابعين حقيقيين.",
+          fullDescription:
+            "نحولو مستخدمي السوشيال ميديا لحرفاء وفيين من خلال محتوى فيديو قصير (Reels & TikTok) يشد الانتباه.",
           metricsHighlight: "نسبة مشاهدة ومتابعة عالية",
           techTag: "فيديوهات ريلز • تيك توك وإنستغرام",
           deliverables: [
-            "خطة نشر ومحتوى شهري",
-            "تصوير ومونتاج فيديوهات ريلز",
-            "إدارة وتفاعل مع المتابعين",
+            "استراتيجية وجدول محتوى",
+            "فيديوهات قصيرة ريلز وتيك توك",
+            "إدارة حسابات Instagram & TikTok",
+            "تفاعل وإدارة المجتمع",
           ],
         },
         "digital-marketing": {
           title: "التسويق الرقمي الممول",
           shortDescription:
             "حملات إعلانية في ميتا وجوجل وسيو (SEO) موجهة باش تجيب مبيعات حقيقية.",
+          fullDescription:
+            "نصممو حملات إشهارية موجهة ومدروسة على Meta و Google مع تحسين محركات البحث SEO، وتتبع كل مليم يصنعلك مرابيح.",
           metricsHighlight: "أعلى عائد استثماري (ROAS)",
           techTag: "إعلانات ميتا وجوجل • سيو تقني",
           deliverables: [
-            "إعلانات فيسبوك وإنستغرام",
-            "إعلانات بحث جوجل (Google Ads)",
-            "تحسين محركات البحث والتحليلات",
+            "إعلانات Meta (فيسبوك وإنستغرام)",
+            "إعلانات بحث Google & Performance Max",
+            "تحسين محركات البحث SEO التقني",
+            "لوحات قياس العائد على الإشهار",
           ],
         },
         "ai-automation": {
           title: "الذكاء الاصطناعي والأوتوماسيون",
           shortDescription:
             "مساعدين أذكياء يخدمو 24/7 وأوتوماسيون تريحك من الخدمة المكررة.",
+          fullDescription:
+            "نربطو أدواتك اليومية ونركبولك مساعدين ذكاء اصطناعي يجاوبو حرفائك ويقضيو المهام المتكررة 24 ساعة على 24.",
           metricsHighlight: "ربح وقت حتى 80%",
           techTag: "وكلاء ذكاء اصطناعي • أوتوماسيون",
           deliverables: [
-            "مساعد ذكي للرد على الحرفاء",
-            "ربط السيستيمات وخدمة الأوتوماسيون",
-            "مزامنة البيانات والـ CRM",
+            "مساعدين أذكياء لخدمة الحرفاء",
+            "أوتوماتيزاسيون مسارات العمل (n8n)",
+            "ربط الـ CRM وقواعد البيانات",
+            "تطبيقات ذكاء اصطناعي مفصلة",
           ],
         },
         "photo-video-production": {
           title: "التصوير الفوتوغرافي والفيديو",
           shortDescription:
             "تصوير سينمائي احترافي يرفع من قيمة البراند والمنتوجات متاعك.",
+          fullDescription:
+            "من إضاءة الأستوديو لكاميرات السينما، فريق الإنتاج متاعنا يصورلك منتجاتك وشركتك بجودة تخلي علامتك فاخرة وتفرق.",
           metricsHighlight: "جودة سينمائية 4K/6K",
           techTag: "كاميرات سينما • استوديو ودرون",
           deliverables: [
-            "تصوير منتوجات في الاستوديو",
-            "فيديوهات ترويجية للبراند",
-            "تصوير احترافي بالدرون",
+            "تصوير منتجات احترافي بالأستوديو",
+            "أفلام إشهارية للعلامة التجارية",
+            "مقابلات احترافية للإدارة",
+            "تصوير جوي بالدرون بدقة 4K/6K",
           ],
         },
       },
@@ -992,6 +1199,64 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       connectTitle: "تابعنا",
       rights: "جميع الحقوق محفوظة.",
       backToTop: "اطلع للفوق",
+    },
+    aboutPage: {
+      badge: "الأستوديو",
+      headlinePart1: "مصنوع في تونس.",
+      headlineUnderline: "مخدوم للعالم.",
+      leadText:
+        "أحنا أستوديو يجمع بين قوة التصميم والهندسة البرمجية العالية. نصنعو منصات رقمية مميزة تعاون مشروعك باش يبرز ويكبر بطريقة واضحة.",
+      subText:
+        "من مقرنا في تونس (ضفاف البحيرة 2)، نخدمو بسلاسة مع حرفاء في تونس، شمال إفريقيا، أوروبا، دول الخليج، وأمريكا الشمالية.",
+      disciplinesTitle: "المجالات والتخصصات",
+      disciplines: [
+        {
+          role: "الإخراج الفني والتصميم",
+          desc: "هوية بصرية، تايبوغرافي خاصة، ونظم تصميم متكاملة.",
+        },
+        {
+          role: "الهندسة البرمجية",
+          desc: "Next.js 16، WebGL و Three.js، وسيرفرات سريعة.",
+        },
+        {
+          role: "استراتيجيات النمو",
+          desc: "إعلانات موجهة، حملات تحويل، ومتابعة دقيقة للنتائج.",
+        },
+        {
+          role: "الذكاء الاصطناعي والأوتوماتيزاسيون",
+          desc: "أنظمة آلية توفر الوقت ومساعدين أذكياء يجاوبو حرفائك 24/7.",
+        },
+      ],
+      ctaTitle: "عندك فكرة ولا مشروع في بالك ؟",
+      ctaSub: "نقبلو عدد محدود من المشاريع كل فترة باش نضمنو أعلى معايير الجودة.",
+      ctaButton: "ابدأ مشروعك",
+    },
+    servicesPage: {
+      badge: "الخدمات والقدرات",
+      title: "خدماتنا.",
+      subtitle:
+        "كل ما يلزم الشركات والمشاريع الطموحة باش تبدا، تكبر، وتخدم بأوتوماتيزاسيون حديثة.",
+      inquireFor: "اطلب خدمة",
+    },
+    contactPage: {
+      badge: "تواصل معنا",
+      title: "اتصل بنا.",
+      subtitle:
+        "احكيلنا على أهدافك وتفاصيل مشروعك. شريك معانا باش يدرس طلبك ويرجعلك في أقل من 24 ساعة.",
+      servicesLabel: "الخدمات اللي تستحقها",
+      budgetLabel: "الميزانية التقديرية",
+      namePlaceholder: "الاسم واللقب *",
+      emailPlaceholder: "البريد الإلكتروني *",
+      messagePlaceholder: "احكيلنا شوية على مشروعك...",
+      buttonSubmit: "ابعث تفاصيل المشروع",
+      buttonSending: "قاعد يتبعت...",
+      messageSentTitle: "الميساج وصل بنجاح.",
+      messageSentDesc:
+        "شريك معانا باش يراجع مشروعك ويرجعلك في أقل من 24 ساعة.",
+      sendAnother: "ابعث ميساج آخر",
+      coordinatesTitle: "معلومات التواصل",
+      studioTitle: "أستوديو تونس",
+      hours: "من الإثنين للجمعة : 09:00 — 18:30 (توقيت تونس GMT+1)",
     },
   },
 };

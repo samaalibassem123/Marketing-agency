@@ -94,7 +94,7 @@ export default function Navbar() {
               <Link href="/#contact">
                 <Button variant="default" size="sm" className="gap-2">
                   <span>{t.nav.letsTalk}</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <ArrowUpRight className="w-3.5 h-3.5 rtl:rotate-180" />
                 </Button>
               </Link>
             </MagneticButton>
