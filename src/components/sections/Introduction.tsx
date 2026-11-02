@@ -6,8 +6,11 @@ import { ArrowUpRight } from "lucide-react";
 import GeometricArtifact from "@/components/three/GeometricArtifact";
 import GsapReveal from "@/components/animations/GsapReveal";
 import { AGENCY_INFO } from "@/data/agency";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Introduction() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="introduction"
@@ -20,7 +23,7 @@ export default function Introduction() {
         {/* Editorial Subheader */}
         <GsapReveal direction="up">
           <div className="text-xs uppercase tracking-wider text-[#777777] mb-8 font-semibold">
-            ABOUT KONTRAST
+            {t.about.badge}
           </div>
         </GsapReveal>
 
@@ -29,28 +32,28 @@ export default function Introduction() {
           <div className="lg:col-span-7">
             <GsapReveal direction="up" delay={0.1}>
               <h2 className="font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] uppercase leading-[0.95] mb-8 text-[#0A0A0A]">
-                More than an agency. <br />
-                <span className="underline decoration-1 underline-offset-8">Your partner</span> in digital
-                growth.
+                {t.about.headlinePart1} <br />
+                <span className="underline decoration-1 underline-offset-8">
+                  {t.about.headlineUnderline}
+                </span>{" "}
+                {t.about.headlinePart2}
               </h2>
             </GsapReveal>
 
             <GsapReveal direction="up" delay={0.2}>
               <p className="text-xl sm:text-2xl text-[#222222] font-normal leading-relaxed mb-6">
-                We believe great work happens when bold design, clean code, and
-                commercial strategy operate together from day one.
+                {t.about.desc1}
               </p>
               <p className="text-base text-[#777777] leading-relaxed mb-8 max-w-xl font-normal">
-                Based in Tunis and working worldwide, we build digital flagships
-                that make brands impossible to ignore and engineered to convert.
+                {t.about.desc2}
               </p>
 
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0A0A0A] hover:text-[#777777] transition-colors group"
               >
-                <span>Read our story & principles</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#0A0A0A]" />
+                <span>{t.about.readStory}</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-[#0A0A0A] rtl:rotate-180" />
               </Link>
             </GsapReveal>
           </div>
@@ -71,18 +74,24 @@ export default function Introduction() {
 
         {/* 4 Clean Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-[#E5E5E5]">
-          {AGENCY_INFO.stats.map((stat, idx) => (
-            <GsapReveal key={idx} direction="up" delay={idx * 0.08}>
-              <div className="p-6 bg-white border border-[#E5E5E5] rounded-sm">
-                <div className="font-extrabold text-3xl sm:text-5xl text-[#0A0A0A] mb-2 tracking-tight">
-                  {stat.value}
+          {AGENCY_INFO.stats.map((stat, idx) => {
+            const translatedStat = t.about.stats[idx];
+            const value = translatedStat?.value || stat.value;
+            const label = translatedStat?.label || stat.label;
+
+            return (
+              <GsapReveal key={idx} direction="up" delay={idx * 0.08}>
+                <div className="p-6 bg-white border border-[#E5E5E5] rounded-sm">
+                  <div className="font-extrabold text-3xl sm:text-5xl text-[#0A0A0A] mb-2 tracking-tight">
+                    {value}
+                  </div>
+                  <div className="text-xs text-[#777777] uppercase tracking-wider">
+                    {label}
+                  </div>
                 </div>
-                <div className="text-xs text-[#777777] uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            </GsapReveal>
-          ))}
+              </GsapReveal>
+            );
+          })}
         </div>
       </div>
     </section>

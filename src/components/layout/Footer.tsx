@@ -6,8 +6,11 @@ import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { AGENCY_INFO } from "@/data/agency";
 import { SERVICES } from "@/data/services";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -19,14 +22,14 @@ export default function Footer() {
         <div className="pb-16 border-b border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <h2 className="font-extrabold text-4xl sm:text-6xl uppercase tracking-[-0.035em] max-w-xl leading-none">
-              Let&apos;s make something iconic.
+              {t.finalCta.title}
             </h2>
           </div>
 
           <Link href="/#contact">
             <Button size="lg" className="gap-2">
-              <span>Start a Project</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>{t.hero.startProject}</span>
+              <ArrowUpRight className="w-4 h-4 rtl:rotate-180" />
             </Button>
           </Link>
         </div>
@@ -43,8 +46,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-[#777777] font-normal leading-relaxed mb-4">
-              Digital growth partner based in Tunis. Crafting websites, brands,
-              and AI automations for ambitious companies worldwide.
+              {t.footer.agencyDesc}
             </p>
             <div className="text-[#777777]">
               {AGENCY_INFO.location.address}
@@ -53,45 +55,53 @@ export default function Footer() {
 
           <div>
             <span className="text-white uppercase tracking-wider block mb-4 font-semibold">
-              Services
+              {t.footer.servicesTitle}
             </span>
             <ul className="space-y-2.5 text-[#777777]">
-              {SERVICES.map((s) => (
-                <li key={s.id}>
-                  <Link
-                    href={`/#services`}
-                    className="hover:text-white transition-colors"
-                  >
-                    {s.title}
-                  </Link>
-                </li>
-              ))}
+              {SERVICES.map((s) => {
+                const srvTitle = t.services.items[s.id]?.title || s.title;
+                return (
+                  <li key={s.id}>
+                    <Link
+                      href={`/#services`}
+                      className="hover:text-white transition-colors"
+                    >
+                      {srvTitle}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           <div>
             <span className="text-white uppercase tracking-wider block mb-4 font-semibold">
-              Navigation
+              {t.footer.navTitle}
             </span>
             <ul className="space-y-2.5 text-[#777777]">
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
+                <Link href="/#services" className="hover:text-white transition-colors">
+                  {t.nav.services}
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-white transition-colors">
-                  Services
+                <Link href="/#process" className="hover:text-white transition-colors">
+                  {t.nav.process}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About
+                <Link href="/#why-us" className="hover:text-white transition-colors">
+                  {t.nav.whyUs}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact
+                <Link href="/#introduction" className="hover:text-white transition-colors">
+                  {t.nav.about}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contact" className="hover:text-white transition-colors">
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>
@@ -99,7 +109,7 @@ export default function Footer() {
 
           <div>
             <span className="text-white uppercase tracking-wider block mb-4 font-semibold">
-              Connect
+              {t.footer.connectTitle}
             </span>
             <ul className="space-y-2.5 text-[#777777]">
               {AGENCY_INFO.socials.map((soc) => (
@@ -111,7 +121,7 @@ export default function Footer() {
                     className="hover:text-white transition-colors flex items-center justify-between"
                   >
                     <span>{soc.name}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 rtl:rotate-180" />
                   </a>
                 </li>
               ))}
@@ -122,14 +132,14 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777777]">
           <div>
-            © {new Date().getFullYear()} {AGENCY_INFO.name}. All rights reserved.
+            © {new Date().getFullYear()} {AGENCY_INFO.name}. {t.footer.rights}
           </div>
 
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-white hover:text-white/70 transition-colors cursor-pointer"
           >
-            <span>BACK TO TOP</span>
+            <span>{t.footer.backToTop}</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>

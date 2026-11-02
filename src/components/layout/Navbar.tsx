@@ -5,13 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import MobileMenu from "./MobileMenu";
+import LanguageSwitcher from "./LanguageSwitcher";
 import MagneticButton from "@/components/animations/MagneticButton";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,11 +30,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "/#services" },
-    { label: "Process", href: "/#process" },
-    { label: "Why Us", href: "/#why-us" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.process, href: "/#process" },
+    { label: t.nav.whyUs, href: "/#why-us" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.contact, href: "/contact" },
   ];
 
   return (
@@ -83,23 +86,27 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right CTA */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Right CTA + Language Switcher */}
+          <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
+
             <MagneticButton>
               <Link href="/#contact">
                 <Button variant="default" size="sm" className="gap-2">
-                  <span>Let&apos;s Talk</span>
+                  <span>{t.nav.letsTalk}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Button>
               </Link>
             </MagneticButton>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* Mobile Menu Button + Switcher */}
+          <div className="flex items-center gap-2.5 md:hidden">
+            <LanguageSwitcher />
+
             <Link href="/#contact">
               <Button size="sm" className="h-8 px-3 text-[11px]">
-                Talk
+                {t.nav.letsTalk}
               </Button>
             </Link>
             <button

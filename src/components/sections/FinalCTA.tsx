@@ -10,8 +10,10 @@ import MagneticButton from "@/components/animations/MagneticButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FinalCTA() {
+  const { t } = useLanguage();
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "Web Development",
   ]);
@@ -81,14 +83,13 @@ export default function FinalCTA() {
         <div className="max-w-4xl mb-16">
           <GsapReveal direction="up">
             <div className="text-xs uppercase tracking-wider text-[#777777] mb-3 font-semibold">
-              START A PROJECT
+              {t.finalCta.badge}
             </div>
             <h2 className="font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] uppercase leading-[0.95] mb-6">
-              Let&apos;s build something that moves your business forward.
+              {t.finalCta.title}
             </h2>
             <p className="text-lg sm:text-xl text-[#777777] font-normal">
-              Have an idea, a project, or a business ready to grow? Let&apos;s
-              make it happen.
+              {t.finalCta.subtitle}
             </p>
           </GsapReveal>
         </div>
@@ -102,17 +103,17 @@ export default function FinalCTA() {
                   <Check className="w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-2xl text-white">
-                  Message Received.
+                  {t.finalCta.messageSentTitle}
                 </h3>
                 <p className="text-sm text-[#777777] max-w-sm mx-auto font-normal">
-                  We will review your brief and get back to you within 24 hours.
+                  {t.finalCta.messageSentDesc}
                 </p>
                 <Button
                   variant="outline"
                   onClick={() => setSubmitted(false)}
                   size="sm"
                 >
-                  Send another message
+                  {t.finalCta.sendAnother}
                 </Button>
               </div>
             ) : (
@@ -120,10 +121,11 @@ export default function FinalCTA() {
                 {/* Services */}
                 <div>
                   <label className="text-xs uppercase tracking-wider text-white block mb-3 font-semibold">
-                    Select Services
+                    {t.finalCta.servicesLabel}
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {SERVICES.map((srv) => {
+                      const srvTranslated = t.services.items[srv.id]?.title || srv.title;
                       const isSelected = selectedServices.includes(srv.title);
                       return (
                         <button
@@ -136,7 +138,7 @@ export default function FinalCTA() {
                               : "bg-white/[0.03] border-white/10 text-[#777777] hover:text-white hover:bg-white/[0.08] hover:border-white/25"
                           }`}
                         >
-                          {srv.title}
+                          {srvTranslated}
                         </button>
                       );
                     })}
@@ -147,7 +149,7 @@ export default function FinalCTA() {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <label className="text-xs uppercase tracking-wider text-white font-semibold">
-                      Estimated Budget
+                      {t.finalCta.budgetLabel}
                     </label>
                     <div className="flex gap-1 border border-white/10 p-0.5 rounded-sm">
                       {(["TND", "EUR", "USD"] as const).map((curr) => (
@@ -190,7 +192,7 @@ export default function FinalCTA() {
                   <Input
                     type="text"
                     required
-                    placeholder="Your Name *"
+                    placeholder={t.finalCta.namePlaceholder}
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -199,7 +201,7 @@ export default function FinalCTA() {
                   <Input
                     type="email"
                     required
-                    placeholder="Email Address *"
+                    placeholder={t.finalCta.emailPlaceholder}
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -209,7 +211,7 @@ export default function FinalCTA() {
 
                 <Textarea
                   rows={3}
-                  placeholder="Tell us briefly about the project..."
+                  placeholder={t.finalCta.messagePlaceholder}
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -223,8 +225,12 @@ export default function FinalCTA() {
                     size="lg"
                     className="gap-2"
                   >
-                    <span>{loading ? "Sending..." : "Start a Project"}</span>
-                    <ArrowUpRight className="w-4 h-4" />
+                    <span>
+                      {loading
+                        ? t.finalCta.buttonSending
+                        : t.finalCta.buttonSubmit}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 rtl:rotate-180" />
                   </Button>
                 </MagneticButton>
               </form>
@@ -235,10 +241,10 @@ export default function FinalCTA() {
           <div className="lg:col-span-4 space-y-6">
             <div className="p-8 bg-[#111111]/75 backdrop-blur-md border border-white/10 rounded-sm shadow-[0_16px_32px_-8px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.12)]">
               <span className="text-xs uppercase tracking-wider text-white block mb-2 font-semibold">
-                DIRECT CONTACT
+                {t.finalCta.directContactTitle}
               </span>
               <h3 className="font-bold text-2xl text-white mb-4 tracking-tight">
-                Talk to a partner.
+                {t.finalCta.talkToPartner}
               </h3>
 
               <div className="space-y-4 text-xs text-[#777777]">

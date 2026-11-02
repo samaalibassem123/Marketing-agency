@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SERVICES } from "@/data/services";
 import GsapReveal from "@/components/animations/GsapReveal";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Pillar Icon Mapping
 const SERVICE_ICONS: Record<string, React.ReactNode> = {
@@ -38,6 +39,8 @@ const SERVICE_TECH_TAGS: Record<string, string> = {
 };
 
 export default function Services() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="services"
@@ -52,17 +55,16 @@ export default function Services() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#E5E5E5] pb-8 mb-12 sm:mb-16">
           <GsapReveal direction="up">
             <div className="text-xs uppercase tracking-wider text-[#777777] mb-3 font-semibold">
-              SERVICES
+              {t.services.badge}
             </div>
             <h2 className="font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-[-0.035em] uppercase text-[#0A0A0A]">
-              What we do.
+              {t.services.title}
             </h2>
           </GsapReveal>
 
           <GsapReveal direction="up" delay={0.1}>
             <p className="max-w-md text-[#555555] text-base sm:text-lg font-normal leading-relaxed">
-              Six core digital growth capabilities engineered to launch modern brands,
-              outpace competitors, and generate measurable commercial value.
+              {t.services.subtitle}
             </p>
           </GsapReveal>
         </div>
@@ -70,10 +72,21 @@ export default function Services() {
         {/* Clean Side-by-Side Cards Grid (3 Columns on Desktop, 2 on Tablet, 1 on Mobile) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {SERVICES.map((service, idx) => {
+            const itemData = t.services.items[service.id];
+            const title = itemData?.title || service.title;
+            const shortDescription =
+              itemData?.shortDescription || service.shortDescription;
+            const metricsHighlight =
+              itemData?.metricsHighlight || service.metricsHighlight;
+            const techTag =
+              itemData?.techTag ||
+              SERVICE_TECH_TAGS[service.id] ||
+              "Full-Service Capability";
+            const deliverables =
+              itemData?.deliverables || service.deliverables;
+
             const icon =
               SERVICE_ICONS[service.id] || <Sparkles className="w-4 h-4" />;
-            const techTag =
-              SERVICE_TECH_TAGS[service.id] || "Full-Service Capability";
 
             return (
               <GsapReveal key={service.id} direction="up" delay={idx * 0.07}>
@@ -97,7 +110,7 @@ export default function Services() {
                       </div>
 
                       <span className="px-2.5 py-1 text-[11px] font-semibold text-[#0A0A0A] bg-black/[0.04] border border-[#E5E5E5] rounded-sm shadow-sm">
-                        {service.metricsHighlight}
+                        {metricsHighlight}
                       </span>
                     </div>
 
@@ -108,7 +121,7 @@ export default function Services() {
                     >
                       <Image
                         src={service.image}
-                        alt={service.title}
+                        alt={title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                         className="object-cover filter grayscale contrast-125 brightness-95 group-hover:filter-none group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
@@ -125,12 +138,12 @@ export default function Services() {
 
                     {/* Service Title */}
                     <h3 className="font-bold text-2xl uppercase tracking-tight text-[#0A0A0A] mb-2.5 transition-colors">
-                      {service.title}
+                      {title}
                     </h3>
 
                     {/* Short Description */}
                     <p className="text-sm text-[#555555] font-normal leading-relaxed mb-6">
-                      {service.shortDescription}
+                      {shortDescription}
                     </p>
                   </div>
 
@@ -138,10 +151,10 @@ export default function Services() {
                   <div className="relative z-10">
                     <div className="pt-4 border-t border-[#E5E5E5] mb-5">
                       <span className="text-[11px] uppercase tracking-wider text-[#888888] font-semibold block mb-3">
-                        Included Deliverables
+                        {t.services.includedDeliverables}
                       </span>
                       <div className="space-y-2">
-                        {service.deliverables.slice(0, 3).map((item, dIdx) => (
+                        {deliverables.slice(0, 3).map((item, dIdx) => (
                           <div
                             key={dIdx}
                             className="flex items-center gap-2.5 text-xs text-[#444444] group-hover:text-[#0A0A0A] transition-colors"
@@ -158,9 +171,9 @@ export default function Services() {
                     {/* Bottom Action Footer */}
                     <div className="pt-4 border-t border-[#E5E5E5] flex items-center justify-between text-xs">
                       <span className="text-[#777777] uppercase tracking-wider font-semibold group-hover:text-[#0A0A0A] transition-colors">
-                        Inquire About This
+                        {t.services.inquireAbout}
                       </span>
-                      <span className="p-2 rounded-sm bg-black/[0.04] border border-[#E5E5E5] text-[#0A0A0A] group-hover:bg-[#0A0A0A] group-hover:text-white transition-all duration-300">
+                      <span className="p-2 rounded-sm bg-black/[0.04] border border-[#E5E5E5] text-[#0A0A0A] group-hover:bg-[#0A0A0A] group-hover:text-white transition-all duration-300 rtl:rotate-180">
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
@@ -174,14 +187,14 @@ export default function Services() {
         {/* Bottom Callout & Link */}
         <div className="mt-16 pt-8 border-t border-[#E5E5E5] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="text-[#777777]">
-            Need a tailored scope or multi-pillar engagement?
+            {t.services.needTailored}
           </div>
           <Link
             href="/services"
             className="flex items-center gap-2 text-[#0A0A0A] hover:text-[#555555] transition-colors uppercase tracking-wider font-semibold"
           >
-            <span>Explore All 6 Full Capabilities</span>
-            <ArrowUpRight className="w-4 h-4" />
+            <span>{t.services.exploreAll}</span>
+            <ArrowUpRight className="w-4 h-4 rtl:rotate-180" />
           </Link>
         </div>
       </div>

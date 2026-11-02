@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -72,11 +73,13 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-screen bg-[#0A0A0A] text-[#FFFFFF] font-sans antialiased selection:bg-white selection:text-black flex flex-col font-normal"
       >
-        <Navbar />
-        <SmoothScroll>
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <LanguageProvider>
+          <Navbar />
+          <SmoothScroll>
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );
