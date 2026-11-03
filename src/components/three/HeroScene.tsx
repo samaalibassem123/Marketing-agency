@@ -135,7 +135,7 @@ export default function HeroScene() {
 
     let animationFrameId = 0;
     let isVisible = true;
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
 
     const animate = () => {
       if (!isVisible) {
@@ -144,7 +144,8 @@ export default function HeroScene() {
       }
       animationFrameId = requestAnimationFrame(animate);
 
-      const elapsedTime = clock.getElapsedTime();
+      timer.update();
+      const elapsedTime = timer.getElapsed();
 
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
@@ -221,6 +222,7 @@ export default function HeroScene() {
       ringGeo.dispose();
       ringMat.dispose();
       texture.dispose();
+      timer.dispose();
       renderer.dispose();
 
       if (renderer.domElement && container.contains(renderer.domElement)) {

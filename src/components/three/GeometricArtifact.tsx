@@ -87,7 +87,7 @@ export default function GeometricArtifact() {
 
     let animId = 0;
     let isVisible = true;
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
 
     const render = () => {
       if (!isVisible) {
@@ -95,7 +95,8 @@ export default function GeometricArtifact() {
         return;
       }
       animId = requestAnimationFrame(render);
-      const t = clock.getElapsedTime();
+      timer.update();
+      const t = timer.getElapsed();
 
       mouse.x += (mouse.targetX - mouse.x) * 0.08;
       mouse.y += (mouse.targetY - mouse.y) * 0.08;
@@ -145,6 +146,7 @@ export default function GeometricArtifact() {
       innerMat.dispose();
       ptGeo.dispose();
       ptMat.dispose();
+      timer.dispose();
       renderer.dispose();
 
       if (renderer.domElement && container.contains(renderer.domElement)) {

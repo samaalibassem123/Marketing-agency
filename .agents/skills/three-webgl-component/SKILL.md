@@ -65,10 +65,10 @@ export default function MyScene() {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // 3. Animation Loop with Viewport Observation
+    // 3. Animation Loop with Viewport Observation (using modern THREE.Timer)
     let animId = 0;
     let isVisible = true;
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
 
     const animate = () => {
       if (!isVisible) {
@@ -76,7 +76,8 @@ export default function MyScene() {
         return;
       }
       animId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      timer.update();
+      const elapsedTime = timer.getElapsed();
 
       mesh.rotation.x = elapsedTime * 0.15;
       mesh.rotation.y = elapsedTime * 0.2;
