@@ -84,8 +84,16 @@ export default function MobileMenu({
             ))}
           </div>
 
+          {/* Language Selection Section in Mobile Drawer */}
+          <div className="py-4 border-t border-white/10">
+            <span className="text-[10px] uppercase tracking-wider text-[#777777] block mb-2 font-semibold">
+              Language / Langue / اللغة
+            </span>
+            <LanguageSwitcher variant="full" />
+          </div>
+
           {/* Bottom Coordinates & Direct CTA */}
-          <div className="pt-6 border-t border-white/10 flex flex-col gap-5">
+          <div className="pt-4 border-t border-white/10 flex flex-col gap-4">
             <div className="grid grid-cols-1 gap-2 text-xs text-[#777777]">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-white" />

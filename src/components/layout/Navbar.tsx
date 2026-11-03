@@ -86,8 +86,8 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right CTA + Language Switcher */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Right CTA + Language Switcher (Desktop & Tablet) */}
+          <div className="hidden md:flex items-center gap-3 lg:gap-4 shrink-0">
             <LanguageSwitcher />
 
             <MagneticButton>
@@ -100,24 +100,25 @@ export default function Navbar() {
             </MagneticButton>
           </div>
 
-          {/* Mobile Menu Button + Switcher */}
-          <div className="flex items-center gap-2.5 md:hidden">
+          {/* Mobile Menu Controls */}
+          <div className="flex md:hidden items-center gap-2 shrink-0">
             <LanguageSwitcher />
 
-            <Link href="/#contact">
-              <Button size="sm" className="h-8 px-3 text-[11px]">
+            <Link href="/#contact" className="hidden sm:inline-flex">
+              <Button size="sm" className="h-8 px-2.5 text-[11px]">
                 {t.nav.letsTalk}
               </Button>
             </Link>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-white bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-sm hover:bg-white/[0.12] transition-colors"
+              className="p-2 text-white bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-sm hover:bg-white/[0.12] transition-colors shrink-0 cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5" />
               )}
             </button>
           </div>
