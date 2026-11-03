@@ -39,7 +39,18 @@ export default function GeometricArtifact() {
       0.1,
       50
     );
-    camera.position.z = 4.2;
+
+    const updateCameraZ = (w: number, h: number) => {
+      const aspect = w / h;
+      if (aspect < 0.8) {
+        camera.position.z = 6.2; // Mobile screens
+      } else if (aspect < 1.2) {
+        camera.position.z = 5.0; // Tablet
+      } else {
+        camera.position.z = 4.2; // Desktop
+      }
+    };
+    updateCameraZ(width, height);
 
     // Monochromatic Geometric Form: Pure white wireframe
     const outerGeo = new THREE.OctahedronGeometry(1.4, 0);
@@ -82,7 +93,7 @@ export default function GeometricArtifact() {
     const ptMesh = new THREE.Points(ptGeo, ptMat);
     scene.add(ptMesh);
 
-    // Mouse Tracking
+    // Mouse & Touch Tracking
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
     const onMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -92,7 +103,20 @@ export default function GeometricArtifact() {
       mouse.targetY = y;
     };
 
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const rect = container.getBoundingClientRect();
+        const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
+        mouse.targetX = x * 0.9;
+        mouse.targetY = y * 0.9;
+      }
+    };
+
     window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchMove, { passive: true });
 
     let animId = 0;
     let isVisible = true;
@@ -128,7 +152,7 @@ export default function GeometricArtifact() {
           render();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0 }
     );
     observer.observe(container);
 
@@ -136,12 +160,13 @@ export default function GeometricArtifact() {
 
     const onResize = () => {
       if (!container) return;
-      const width = container.clientWidth || window.innerWidth;
-      const height = container.clientHeight || 340;
-      if (width === 0 || height === 0) return;
-      camera.aspect = width / height;
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || 340;
+      if (w === 0 || h === 0) return;
+      camera.aspect = w / h;
+      updateCameraZ(w, h);
       camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      renderer.setSize(w, h);
     };
 
     window.addEventListener("resize", onResize);
@@ -149,6 +174,8 @@ export default function GeometricArtifact() {
     return () => {
       observer.disconnect();
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchMove);
       window.removeEventListener("resize", onResize);
       cancelAnimationFrame(animId);
 

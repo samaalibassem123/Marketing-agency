@@ -40,7 +40,20 @@ export default function HeroScene() {
       0.1,
       100
     );
-    camera.position.z = 6;
+
+    // Responsive camera framing: adapt Z distance so the entire 3D artifact
+    // and orbiting ring fit centered on narrow mobile screens (portrait aspect < 1)
+    const updateCameraZ = (w: number, h: number) => {
+      const aspect = w / h;
+      if (aspect < 0.6) {
+        camera.position.z = 10.2; // Tall mobile screen
+      } else if (aspect < 1.0) {
+        camera.position.z = 8.5; // Compact tablet / fold
+      } else {
+        camera.position.z = 6.0; // Desktop landscape
+      }
+    };
+    updateCameraZ(width, height);
 
     // Particle Cloud: Pure Monochromatic White & Silver
     const particleCount = 2200;
@@ -125,7 +138,7 @@ export default function HeroScene() {
     ring.rotation.x = Math.PI / 3;
     scene.add(ring);
 
-    // Mouse Tracking with smooth lerp
+    // Mouse & Touch Tracking with smooth lerp
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
@@ -135,7 +148,20 @@ export default function HeroScene() {
       mouse.targetY = y * 0.7;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        const rect = container.getBoundingClientRect();
+        const x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = -(((touch.clientY - rect.top) / rect.height) * 2 - 1);
+        mouse.targetX = x * 0.8;
+        mouse.targetY = y * 0.8;
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchMove, { passive: true });
 
     let scrollY = 0;
     const handleScroll = () => {
@@ -201,7 +227,7 @@ export default function HeroScene() {
           animate();
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0 }
     );
     observer.observe(container);
 
@@ -209,12 +235,13 @@ export default function HeroScene() {
 
     const handleResize = () => {
       if (!container) return;
-      const width = container.clientWidth || window.innerWidth;
-      const height = container.clientHeight || window.innerHeight;
-      if (width === 0 || height === 0) return;
-      camera.aspect = width / height;
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || window.innerHeight;
+      if (w === 0 || h === 0) return;
+      camera.aspect = w / h;
+      updateCameraZ(w, h);
       camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      renderer.setSize(w, h);
     };
 
     window.addEventListener("resize", handleResize);
@@ -222,6 +249,8 @@ export default function HeroScene() {
     return () => {
       observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchMove);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
