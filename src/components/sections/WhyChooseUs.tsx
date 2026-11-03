@@ -25,7 +25,7 @@ const PILLAR_ICONS: Record<string, React.ReactNode> = {
 };
 
 export default function WhyChooseUs() {
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
   // Duplicate array 3 times for a continuous, seamless infinite loop
   const marqueePillars = [...VALUE_PILLARS, ...VALUE_PILLARS, ...VALUE_PILLARS];
 
@@ -73,12 +73,12 @@ export default function WhyChooseUs() {
       </div>
 
       {/* Horizontal Moving Glass Cards (Moving Left to Right) */}
-      <div className="relative w-full overflow-hidden py-4">
+      <div className="relative w-full overflow-hidden py-4" dir="ltr">
         {/* Left and Right Edge Vignette Gradients for Luxury Fade */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-20" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-20" />
 
-        {/* Marquee Runner moving Left to Right */}
+        {/* Marquee Runner moving Left to Right - forced ltr layout for stable transforms */}
         <div className="animate-marquee-ltr flex items-stretch gap-6 px-4 cursor-grab active:cursor-grabbing">
           {marqueePillars.map((pillar, idx) => {
             const pData = t.whyUs.pillars[pillar.number];
@@ -94,7 +94,10 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={`${pillar.number}-${idx}`}
-                className="group relative w-[300px] sm:w-[350px] shrink-0 p-6 sm:p-7 bg-[#111111]/80 backdrop-blur-xl border border-white/10 hover:border-white/35 rounded-sm shadow-[0_16px_32px_-8px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.14)] hover:shadow-[0_24px_48px_-10px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.24)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                dir={isRTL ? "rtl" : "ltr"}
+                className={`group relative w-[300px] sm:w-[350px] shrink-0 p-6 sm:p-7 bg-[#111111]/80 backdrop-blur-xl border border-white/10 hover:border-white/35 rounded-sm shadow-[0_16px_32px_-8px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.14)] hover:shadow-[0_24px_48px_-10px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.24)] transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                  isRTL ? "text-right" : "text-left"
+                }`}
               >
                 {/* Subtle Top-Right Specular Ambient Highlight */}
                 <div className="absolute -top-12 -right-12 w-28 h-28 bg-white/[0.03] group-hover:bg-white/[0.06] rounded-full blur-xl transition-all duration-500 pointer-events-none" />

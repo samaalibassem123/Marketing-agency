@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface SmoothScrollProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ interface SmoothScrollProps {
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
   const pathname = usePathname();
+  const { language } = useLanguage();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const smootherRef = useRef<ScrollSmoother | null>(null);
@@ -77,6 +79,15 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       ScrollTrigger.refresh();
     }
   }, [pathname]);
+
+  // Recalculate ScrollTrigger metrics when language and text dimensions change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [language]);
 
   return (
     <div
