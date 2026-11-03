@@ -25,6 +25,18 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
       return;
     }
 
+    // On touch devices / mobile phones, native 120Hz momentum scrolling is preferred
+    // and avoids touch event locking
+    const isTouchDevice =
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth < 768;
+
+    if (isTouchDevice) {
+      // Refresh ScrollTrigger so standard scroll animations still trigger
+      ScrollTrigger.refresh();
+      return;
+    }
+
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
     const ctx = gsap.context(() => {
@@ -33,7 +45,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         content: contentRef.current,
         smooth: 1.2,
         effects: false,
-        smoothTouch: 0.1,
       });
     });
 
@@ -93,7 +104,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     <div
       id="smooth-wrapper"
       ref={wrapperRef}
-      className="w-full min-h-screen overflow-hidden"
+      className="w-full min-h-screen"
     >
       <div
         id="smooth-content"
