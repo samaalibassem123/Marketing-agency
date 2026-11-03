@@ -6,6 +6,7 @@ import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { AGENCY_INFO } from "@/data/agency";
 import { SERVICES } from "@/data/services";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/ui/Logo";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
@@ -37,13 +38,8 @@ export default function Footer() {
         {/* Links Grid */}
         <div className="py-16 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 text-xs">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-white text-[#0A0A0A] flex items-center justify-center font-bold text-xs rounded-sm">
-                K
-              </div>
-              <span className="font-bold text-lg text-white">
-                KONTRAST
-              </span>
+            <div className="mb-4">
+              <Logo size="sm" />
             </div>
             <p className="text-[#777777] font-normal leading-relaxed mb-4">
               {t.footer.agencyDesc}

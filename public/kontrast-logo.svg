@@ -1,0 +1,37 @@
+<svg viewBox="0 0 180 180" width="180" height="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <clipPath id="kontrast-circle-clip">
+    <circle cx="90" cy="90" r="90" />
+  </clipPath>
+  <g clip-path="url(#kontrast-circle-clip)">
+    <!-- Obsidian Base Canvas -->
+    <circle cx="90" cy="90" r="90" fill="#0A0A0A" />
+
+    <!-- Specular Rim Highlight -->
+    <circle cx="90" cy="90" r="89" stroke="url(#kontrast_rim_grad)" stroke-width="2" />
+
+    <!-- K: Left Vertical Spine -->
+    <path d="M54 54h12.114v72H54z" fill="#FFFFFF" />
+
+    <!-- K: Upper Diagonal Branch -->
+    <path d="M66.114 88.5L113 54h14l-48 44.5-12.886-10z" fill="url(#kontrast_upper_grad)" />
+
+    <!-- K: Signature Next.js Diagonal Gradient Slash -->
+    <path d="M73 87l66.999 77.845c3.334-2.231 6.51-4.68 9.509-7.325L85.5 87H73z" fill="url(#kontrast_slash_grad)" />
+  </g>
+  <defs>
+    <linearGradient id="kontrast_slash_grad" x1="82" y1="96" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="0.65" stop-color="#FFFFFF" stop-opacity="0.8" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="kontrast_upper_grad" x1="120" y1="54" x2="66" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.85" />
+    </linearGradient>
+    <linearGradient id="kontrast_rim_grad" x1="0" y1="0" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="rgba(255, 255, 255, 0.35)" />
+      <stop offset="0.5" stop-color="rgba(255, 255, 255, 0.1)" />
+      <stop offset="1" stop-color="rgba(255, 255, 255, 0.25)" />
+    </linearGradient>
+  </defs>
+</svg>

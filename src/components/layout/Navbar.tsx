@@ -8,6 +8,7 @@ import MobileMenu from "./MobileMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MagneticButton from "@/components/animations/MagneticButton";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/ui/Logo";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
@@ -48,18 +49,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-3 group"
-            aria-label="KONTRAST Agency Home"
-          >
-            <div className="w-7 h-7 bg-white text-[#0A0A0A] flex items-center justify-center font-bold text-sm tracking-tighter rounded-sm group-hover:bg-white/85 transition-colors">
-              K
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white transition-colors">
-              KONTRAST
-            </span>
-          </Link>
+          <Logo size="md" />
 
           {/* Desktop Navigation */}
           <nav

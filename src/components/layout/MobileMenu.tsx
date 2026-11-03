@@ -7,6 +7,7 @@ import { ArrowUpRight, X, Mail, Phone, MapPin } from "lucide-react";
 import { AGENCY_INFO } from "@/data/agency";
 import { Button } from "@/components/ui/button";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Logo from "@/components/ui/Logo";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface MobileMenuProps {
@@ -34,13 +35,8 @@ export default function MobileMenu({
         >
           {/* Header row */}
           <div className="flex items-center justify-between border-b border-white/10 pb-5">
-            <div className="flex items-center gap-3">
-              <div className="w-7 h-7 bg-white text-[#0A0A0A] flex items-center justify-center font-bold text-sm rounded-sm">
-                K
-              </div>
-              <span className="font-bold text-lg tracking-tight">
-                KONTRAST
-              </span>
+            <div onClick={onClose}>
+              <Logo size="md" />
             </div>
 
             <div className="flex items-center gap-3">
